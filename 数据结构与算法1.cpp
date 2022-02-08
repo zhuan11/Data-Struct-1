@@ -439,7 +439,7 @@ int main()
 */
 
 //二叉搜索树
-//1.遍历：先序，中序，后序，层序
+//1.遍历：先序，中序，后序，层序，二叉树数组储存，深度搜索深度  
 //2.查询：搜索特值，最大值，最小值
 //3.插入
 //4.删除
@@ -730,6 +730,52 @@ int main()
 	return 0;
 
 }*/
+
+
+
+
+//////////////////////////二叉树数组储存，深度搜索深度 
+/*#include<iostream>;
+#include<algorithm>;
+using namespace std;
+
+const int N = 10e6 + 10;
+int ans;
+
+struct node {
+	int left;
+	int right;
+}Node[N];
+
+void dfs(int index, int deepth)
+{
+	if (index == 0)
+		return;
+
+	ans = max(ans, deepth);
+
+	dfs(Node[index].left, deepth + 1);
+	dfs(Node[index].right, deepth + 1);
+
+}
+
+int main()
+{
+
+	int n;
+	cin >> n;
+
+	for (int i = 1; i <= n; i++)
+		scanf("%d %d", &Node[i].left, &Node[i].right);
+
+	dfs(1, 1);
+
+	cout << ans;
+
+	return 0;
+
+}*/ 
+
 
 
 //////////////////////////////////二叉搜索树搜索特值 类似二分法（log2 N）
