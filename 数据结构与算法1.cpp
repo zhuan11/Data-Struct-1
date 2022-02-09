@@ -439,7 +439,9 @@ int main()
 */
 
 //二叉搜索树
-//1.遍历：先序，中序，后序，层序，二叉树数组储存，深度搜索深度  
+//1.遍历：先序，中序，后序，层序
+//二叉树数组储存，深度搜索深度  
+//二叉树数组储存，先序在遍历  
 //2.查询：搜索特值，最大值，最小值
 //3.插入
 //4.删除
@@ -771,6 +773,58 @@ int main()
 	dfs(1, 1);
 
 	cout << ans;
+
+	return 0;
+
+}*/ 
+
+
+
+
+
+///////////////////////二叉树数组储存，先序在遍历 
+/*#include<iostream>
+using namespace std;
+
+struct node {
+	char left;
+	char right;
+}Node[1000];
+
+void Preordertraserval(char c)
+{
+	if (c == '*') return;
+
+	cout << c;
+
+	Preordertraserval(Node[c].left);
+	Preordertraserval(Node[c].right);
+}
+
+int main()
+{
+	char c0,c1,c2,c3;
+	int n;
+	cin >> n;
+
+	cin >> c0;
+	cin >> c2;
+	cin >> c3;
+
+	Node[c0].left = c2;
+	Node[c0].right = c3;
+
+	for (int i = 2; i <= n; i++)
+	{
+		cin >> c1;
+		cin >> c2;
+		cin >> c3;
+
+		Node[c1].left = c2;
+		Node[c1].right = c3;
+	}
+
+	Preordertraserval(c0);
 
 	return 0;
 
