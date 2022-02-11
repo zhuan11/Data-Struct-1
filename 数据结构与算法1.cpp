@@ -442,6 +442,7 @@ int main()
 //1.遍历：先序，中序，后序，层序
 //二叉树数组储存，深度搜索深度  
 //二叉树数组储存，先序在遍历  
+//已知先序中序求后序 
 //2.查询：搜索特值，最大值，最小值
 //3.插入
 //4.删除
@@ -829,6 +830,48 @@ int main()
 	return 0;
 
 }*/ 
+
+
+
+
+
+//////////////////////////已知先序中序求后序 
+/*#include<iostream>
+#include<cstring>
+using namespace std;
+
+void Posttraversal(char *PreStr, char *CenStr, int Length)//前序、中序起始位置、长度
+{
+	if (Length == 0)//单一节点
+		return;
+
+	int Rootindex = 0;//长度
+
+	for (; CenStr[Rootindex] != PreStr[0]; Rootindex++);//通过前序去中序找到左右子树
+
+	Posttraversal(PreStr + 1, CenStr, Rootindex);//左子树递归(左子树前序、中序起始位置、长度)
+	Posttraversal(PreStr + Rootindex + 1, CenStr + Rootindex + 1, Length - Rootindex - 1);
+	                                             //右子树递归(前序、中序起始位置、长度)                               
+	cout << *PreStr;
+
+
+}
+
+
+int main()
+{
+	char PreStr[100];
+	char CenStr[100];
+
+	cin >> PreStr;
+	cin >> CenStr;
+
+	Posttraversal(PreStr, CenStr, strlen(PreStr));
+
+	return 0;
+
+} */ 
+
 
 
 
