@@ -204,51 +204,121 @@ int main()
 
 
 
-/////////////////////////////////////////////////////////////////////////////普通栈的实现
-	/*while (m--)
-	{   
-		cin >> s;
+/////////////////////堆栈的数组模拟
+/*#include<iostream>
+using namespace std;
 
-		if (s == "push")
-		{
-			cin >> x;
-			stake[++t] = x;
-		}
-		 else if (s == "pop")
-			t--;
-		 else if (s == "empty")
-			cout << (t ? "NO" : "YES") << endl;
-		else
-			cout << stake[t] << endl;
+typedef struct node {
+
+	int *arr;
+	int Top;
+	int Maxsize;
+}Stack, *Stackpoint;
+
+void Creat(Stackpoint &S,int Maxsize)//建立空堆
+{
+	S = (Stackpoint)malloc(sizeof(Stack));
+	S->arr = (int *)malloc(sizeof(int)*Maxsize);
+	S->Maxsize = Maxsize;
+	S->Top = -1;
+
+}
+
+int Isempty(Stackpoint S)
+{
+	return (S->Top == -1);
+
+}
+
+int Isfull(Stackpoint S)
+{
+	return (S->Top == S->Maxsize-1);
+}
+
+
+void Push(Stackpoint &S, int x)
+{
+
+	if (Isfull(S))
+	{
+		cout << "栈已满";
+		return;
+	}
+	else
+	{
+		S->arr[++S->Top] = x;
+
 	}
 
-	return 0;
-}*/
+}
+
+int Pop(Stackpoint &S)
+{
+	if (Isempty(S))
+	{
+		cout << "栈已空";
+		return;
+	}
+
+	else
+	return S->arr[S->Top--];
+
+}
+*/ 
 
 
 
+//////////////////////////堆栈的链表模拟 
+/*#include<iostream>
+using namespace std;
 
-////////////////////////////////////////////////////////////////////////////普通队列的实现
-/*
-//	while (m--)
-//	{
-//		cin >> s;
-//
-//		if (s == "push")
-//		{
-//			cin >> x;
-//			queue[++tt] = x;
-//		}
-//		else if (s == "pop")
-//			hh++;
-//		else if (s == "empty")
-//			cout << (hh <= tt ? "NO" : "YES") << endl;
-//		else
-//			cout << queue[hh] << endl;
-//	}
-//
-//	return 0;
-//}*/
+typedef struct node {
+
+	int value;
+	struct node *next;
+
+}LNcode, *Linklist;
+
+
+void Creat(Linklist &T)
+{
+	T = (Linklist)malloc(sizeof(LNcode));
+	T->next = NULL;
+}
+
+int Isempty(Linklist &T)
+{
+	return (T->next == NULL);
+
+}
+
+void Push(Linklist &T, int x)
+{
+	Linklist Temp;
+	Temp = (Linklist)malloc(sizeof(LNcode));
+	Temp->value = x;
+
+	Temp->next = T->next;//头插法 
+	T->next = Temp;
+
+}
+
+void Pop(Linklist &T)
+{
+	if (Isempty(T))
+	{
+		cout << "栈已空";
+		return;
+	}
+	else
+	{
+		Linklist Temp;
+		Temp = T->next;
+		T->next= Temp->next;
+		free(Temp);
+	}
+
+}*/ 
 
 
 
@@ -318,9 +388,7 @@ int pre[5];
 int a, b;
 int find(int x)                            //找到父亲节点
 {
-	if (pre[x] == x) re
-	
-	turn x;             // 结束条件，找到并返回教主
+	if (pre[x] == x) return x;             // 结束条件，找到并返回教主
 	return pre[x] = find(pre[x]);          //找x的父亲节点，若不是教主，继续往上面找，找到后，一层一层返回x作为前一层的父亲节点
 }
 void join(int x, int y)                    //合并元素，融合教主
