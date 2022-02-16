@@ -204,7 +204,7 @@ int main()
 
 
 
-/////////////////////堆栈的数组模拟
+/////////////////////堆栈数组模拟
 /*#include<iostream>
 using namespace std;
 
@@ -268,7 +268,7 @@ int Pop(Stackpoint &S)
 
 
 
-//////////////////////////堆栈的链表模拟 
+//////////////////////////堆栈链表模拟 
 /*#include<iostream>
 using namespace std;
 
@@ -320,6 +320,144 @@ void Pop(Linklist &T)
 
 }*/ 
 
+
+
+
+///////////////////////循环队列数组模拟 
+/*#include<iostream>
+using namespace std;
+
+typedef struct node {
+
+	int *arr;
+	int front;
+	int rear;
+	int Maxsize;
+}queuecode, *queue;
+
+void Creat(queue &q, int Maxsize)
+{
+	q = (queue)malloc(sizeof(queuecode));
+	q->arr = (int *)malloc(sizeof(int)*Maxsize);
+	q->Maxsize = Maxsize;
+	q->front = q->rear = 0;
+
+}
+
+bool Isfull(queue q)
+{
+	return ((q->rear + 1) % q->Maxsize == q->front);
+}
+
+bool Isempty(queue q)
+{
+	return (q->front == q->rear);
+}
+
+void AddQ(queue &q, int x)
+{
+	if (Isfull(q))
+	{
+		cout << "队列已满";
+		return;
+	}
+	else
+	{
+		q->rear = (q->rear + 1) % q->Maxsize;
+		q->arr[q->rear] = x;
+	}
+
+}
+
+int PopQ(queue &q)
+{
+	if (Isempty(q))
+	{
+		cout << "队列已空";
+		return;
+	}
+
+	else
+	{
+		q->front = (q->front + 1) % q->Maxsize;
+		return q->arr[q->front];
+	}
+
+}*/ 
+
+
+
+
+/////////////////////队列链表模拟 
+/*#include<iostream>
+using namespace std;
+
+typedef struct node {//队列节点
+
+	int value;
+	struct node* next;
+}LNcode, *Linklist;
+
+typedef struct Node {//队列头节点
+
+	Linklist front;
+	Linklist rear;
+}queuecode, *queue;
+
+void Creat(queue &q)
+{
+	q = (queue)malloc(sizeof(queuecode));
+	q->front = q->rear = NULL;
+}
+
+bool Isempty(queue q)
+{
+	return (q->front == NULL);
+}
+
+void Push(queue &q,int x)
+{
+	Linklist temp;
+	temp = (Linklist)malloc(sizeof(LNcode));
+	temp->value = x;
+	if (Isempty(q))//插入就需要更新尾部rear
+	{
+		q->rear = q->front = temp;
+		temp->next = NULL;
+	}
+	
+	else
+	{
+		q->rear->next = temp;
+		temp->next = NULL;
+		q->rear = temp;
+	}
+
+}
+
+int Pop(queue &q)
+{
+	if (Isempty(q))
+	{
+		cout << "队列已空";
+		return 0;
+	}
+	Linklist Temp = q->front;
+
+	if (q->front == q->rear)//删除就需要更新头部front
+		q->front = q->rear = NULL;
+	else
+		q->front = q->front->next;
+
+	int answer = Temp->value;
+	free(Temp);
+
+	return answer;
+
+
+}*/ 
+
+ 
 
 
 
