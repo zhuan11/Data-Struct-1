@@ -457,6 +457,80 @@ int Pop(queue &q)
 
 }*/ 
 
+
+
+
+/////////////////////////双向链表的数组模拟 
+/*#include<iostream>
+using namespace std;
+
+const int Maxvalue = 100000 + 10;
+
+struct node {
+
+	int left;
+	int right;
+}arr[Maxvalue];
+
+int Uniquearr[Maxvalue];
+
+int main()
+{
+	int N;
+	cin >> N;
+	arr[1].left = 0;
+	arr[1].right = Maxvalue;
+	arr[0].right = 1;
+	arr[arr[1].right].left = 1;
+
+	int a, b;
+	for (int i = 2; i <= N; i++)//更新插入元素的左右元素，更新左右的左右
+	{
+		cin >> a >> b;
+		if (b == 0)//左插入
+		{
+			arr[i].left = arr[a].left;
+			arr[i].right = a;
+			arr[arr[a].left].right = i;
+			arr[a].left = i;
+		}
+		if (b == 1)//右插入
+		{
+			arr[i].left = a;
+			arr[i].right = arr[a].right;
+			arr[arr[a].right].left = i;
+			arr[a].right = i;
+		}
+	}
+
+	int c, f;
+	cin >> f;
+
+	while (f--)
+	{
+		cin >> c;
+		if (!Uniquearr[c])//删除元素，更新左右元素
+		{
+			int s, b;
+			s = arr[c].left;
+			b = arr[c].right;
+			arr[s].right = b;
+			arr[b].left = s;
+			Uniquearr[c] = 1;
+		}
+
+	}
+	
+	int index = 0;
+	while (arr[index].right != Maxvalue)//输出
+	{
+		cout << arr[index].right << ' ';
+		 index = arr[index].right;
+	} 
+
+	return 0;
+
+}*/ 
  
 
 
